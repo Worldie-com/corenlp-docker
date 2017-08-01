@@ -17,8 +17,7 @@ RUN wget $(/opt/grepurl/grepurl -d -r 'zip$' -a http://stanfordnlp.github.io/Cor
 
 WORKDIR /opt/corenlp
 
-ENV PORT 9000
-EXPOSE $PORT
+EXPOSE 9000
 
-CMD java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer --port $PORT --timeout 10000
+CMD java -mx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer --port 9000 --timeout 10000
 
