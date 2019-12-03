@@ -31,8 +31,6 @@ RUN apk update && apk add openjdk8-jre-base
 WORKDIR /opt/corenlp
 COPY --from=builder /opt/corenlp .
 
-ENV JAVA_XMX 4g
-ENV PORT 9000
-EXPOSE $PORT
+EXPOSE 9000
 
-CMD java -Xmx$JAVA_XMX -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
+CMD java -Xmx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
