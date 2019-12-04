@@ -26,4 +26,4 @@ COPY --from=builder /opt/corenlp .
 
 EXPOSE 9000
 
-CMD java -Xmx4g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000 -annotators tokenize,ssplit,pos,lemma,ner,depparse,coref,quote
+CMD java -Xmx10g -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000 -annotators tokenize,ssplit,pos,lemma,ner,depparse,coref,quote
