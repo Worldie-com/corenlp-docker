@@ -5,17 +5,11 @@ RUN apk update && \
     apk add git wget openjdk8-jre-base py2-pip py2-curl && \
     pip install setuptools
 
-# install geturl script to retrieve the most current download URL of CoreNLP
-WORKDIR /opt
-RUN git clone https://github.com/arne-cl/grepurl.git
-WORKDIR /opt/grepurl
-RUN python setup.py install
-
 # install latest CoreNLP release
 WORKDIR /opt
-RUN wget $(grepurl -r 'zip$' -a http://stanfordnlp.github.io/CoreNLP/) && \
-    unzip stanford-corenlp-full-*.zip && \
-    mv $(ls -d stanford-corenlp-full-*/) corenlp && rm *.zip
+RUN wget nlp.stanford.edu/software/stanford-corenlp-4.2.0.zip && \
+    unzip stanford-corenlp-4.2.0.zip && \
+    mv stanford-corenlp-4.2.0 corenlp && rm *.zip
 
 # install latest English language model
 #
@@ -24,7 +18,7 @@ RUN wget $(grepurl -r 'zip$' -a http://stanfordnlp.github.io/CoreNLP/) && \
 # This command get's the first model file (at least for English there are two)
 # and extracts its property file.
 WORKDIR /opt/corenlp
-RUN wget $(grepurl -r 'english.*jar$' -a http://stanfordnlp.github.io/CoreNLP | head -n 1)
+RUN wget http://nlp.stanford.edu/software/stanford-corenlp-4.2.0-models-english.jar
 
 
 # only keep the things we need to run and test CoreNLP
