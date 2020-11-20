@@ -33,6 +33,6 @@ COPY --from=builder /opt/corenlp .
 ADD test_api.py .
 
 ENV JAVA_XMX 4g
-EXPOSE 9000
+EXPOSE 80
 
-CMD java -Xmx$JAVA_XMX -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 9000 -timeout 15000
+CMD java -Xmx$JAVA_XMX -cp "*" edu.stanford.nlp.pipeline.StanfordCoreNLPServer -port 80 -timeout 15000
